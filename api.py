@@ -20,9 +20,9 @@ app = FastAPI(title="Fraud Detection API", version="1.0.0")
 def get_db_connection():
     """Create and return a new MySQL connection."""
     return mysql.connector.connect(
-        host="localhost",
+        host="host name ",
         user="root",                 # change if your user is different
-        password="BlueSky!88",    # <-- PUT YOUR REAL PASSWORD HERE
+        password="your_password",    # <-- PUT YOUR REAL PASSWORD HERE
         database="banking_fraud_detection"
     )
 
