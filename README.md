@@ -1,6 +1,12 @@
 # 🏦 Banking Fraud Detection System
 ### End-to-End Machine Learning Application for Real-Time Transaction Fraud Detection
 
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
+[![Scikit-learn](https://img.shields.io/badge/Scikit--learn-RandomForest-F7931E?style=flat-square&logo=scikit-learn&logoColor=white)](https://scikit-learn.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-REST%20API-009688?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?style=flat-square&logo=jupyter&logoColor=white)](https://jupyter.org)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
+
 > **The Problem:** Banks process millions of transactions daily. A single fraudulent transfer can drain a customer's account in seconds — and manual review is too slow, too costly, and doesn't scale. This system uses machine learning to flag suspicious transactions instantly, with a human-readable explanation for every decision.
 
 ---
@@ -44,6 +50,7 @@ Every prediction includes a **reason** — not just a label. Example:
 - Fast inference — critical for real-time banking systems
 
 ### Pipeline Architecture
+
 ```
 Raw Transaction Data
         ↓
@@ -83,23 +90,23 @@ FastAPI REST Endpoint → UI → SQLite Log
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                    USER INTERFACE                        │
-│              (HTML Form — Input Transaction)             │
+│                    USER INTERFACE                       │
+│              (HTML Form — Input Transaction)            │
 └──────────────────────┬──────────────────────────────────┘
                        │ HTTP POST
 ┌──────────────────────▼──────────────────────────────────┐
-│                   FastAPI Backend                        │
-│                     api.py                               │
-│  • Receives transaction JSON                             │
-│  • Runs fraud_rf_pipeline.joblib                         │
-│  • Returns: probability + label + reason text            │
-└──────────┬──────────────────────────┬────────────────────┘
+│                   FastAPI Backend                       │
+│                     api.py                              │
+│  • Receives transaction JSON                            │
+│  • Runs fraud_rf_pipeline.joblib                        │
+│  • Returns: probability + label + reason text           │
+└──────────┬──────────────────────────┬───────────────────┘
            │                          │
-┌──────────▼──────────┐   ┌───────────▼────────────────────┐
-│   ML Model Pipeline │   │      SQLite Database            │
-│ fraud_rf_pipeline   │   │  Logs every prediction for      │
-│       .joblib       │   │  audit trail & analytics        │
-└─────────────────────┘   └────────────────────────────────┘
+┌──────────▼──────────┐   ┌───────────▼───────────────────┐
+│   ML Model Pipeline │   │      SQLite Database          │
+│ fraud_rf_pipeline   │   │  Logs every prediction for    │
+│       .joblib       │   │  audit trail & analytics      │
+└─────────────────────┘   └───────────────────────────────┘
 ```
 
 ---
@@ -125,7 +132,9 @@ Banking-Fraud-Detection-Project/
 │   ├── fraud_alert.png
 │   └── not_fraud_alert.png
 │
+├── requirements.txt            # Python dependencies
 ├── .gitignore                  # Excludes __pycache__, .db files
+├── LICENSE                     # MIT License
 └── README.md
 ```
 
@@ -141,7 +150,7 @@ cd Banking-Fraud-Detection-Project
 
 ### 2. Install Dependencies
 ```bash
-pip install fastapi uvicorn scikit-learn pandas numpy joblib
+pip install -r requirements.txt
 ```
 
 ### 3. Start the API Server
@@ -181,20 +190,17 @@ curl -X POST "http://localhost:8000/predict" \
 ## 🖼️ Screenshots
 
 ### Input Form
-![UI Input Form](screenshots/ui_input_form.png)
-<img width="944" height="726" alt="Screenshot 2025-12-24 142428" src="https://github.com/user-attachments/assets/0f74d198-e6d3-4b9e-98a3-15dca6a6ee21" />
+![UI Input Form](https://github.com/user-attachments/assets/0f74d198-e6d3-4b9e-98a3-15dca6a6ee21)
 
 > Enter transaction details — amount, time, type, customer info — and submit for instant analysis.
 
 ### 🔴 Fraud Alert
-![Fraud Alert](screenshots/fraud_alert.png)
-<img width="976" height="474" alt="Screenshot 2025-12-24 142510" src="https://github.com/user-attachments/assets/e7a25a40-a876-4c60-b96a-1c0c785f513d" />
+![Fraud Alert](https://github.com/user-attachments/assets/e7a25a40-a876-4c60-b96a-1c0c785f513d)
 
 > High-risk transaction flagged with fraud probability and human-readable reason for the decision.
 
 ### 🟢 Legitimate Transaction
-![Not Fraud](screenshots/not_fraud_alert.png)
-<img width="978" height="496" alt="Screenshot 2025-12-24 142449" src="https://github.com/user-attachments/assets/9d60cea4-6987-49ba-85bd-bd7f2d5b6fa5" />
+![Not Fraud](https://github.com/user-attachments/assets/9d60cea4-6987-49ba-85bd-bd7f2d5b6fa5)
 
 > Normal transaction cleared with low fraud probability score.
 
@@ -236,12 +242,12 @@ curl -X POST "http://localhost:8000/predict" \
 
 ---
 
+## 👨‍💻 Author
 
+**Suresh Kanchamreddy** — Aspiring Data Analyst & ML Enthusiast
 
-## 👤 Author
-
-**Suresh** — Aspiring Data Analyst & ML Enthusiast  
-🔗 [GitHub Profile](https://github.com/Suresh-Note)
+[![GitHub](https://img.shields.io/badge/GitHub-Suresh--Note-181717?style=flat-square&logo=github)](https://github.com/Suresh-Note)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin)](https://linkedin.com/in/suresh-kanchamreddy)
 
 > *"The best fraud detection system isn't the one with the highest accuracy — it's the one that explains its decisions clearly enough for a banker to act on them."*
 
@@ -249,5 +255,4 @@ curl -X POST "http://localhost:8000/predict" \
 
 ## 📜 License
 
-MIT License — open source, free to use and adapt.
-
+MIT License — open source, free to use and adapt. See [LICENSE](LICENSE) for details.
